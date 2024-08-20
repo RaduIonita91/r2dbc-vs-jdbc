@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  bas-south-backend-db:
+    container_name: postgres-docker
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - '5452:5432'
+    volumes:
+      - ./.docker-env/postgres:/var/lib/postgresql/data
+    networks:
+      back-tier: { }
+
+networks:
+  back-tier:
+    name: back-tier
